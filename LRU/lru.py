@@ -12,7 +12,7 @@ class LRU:
         if key in self.map:
             node = self.map[key]
             self.dl_list.pop_node(node)
-            self.dl_list.append(node.data)
+            self.map[key] = self.dl_list.append(node.data)
             return node.data[1]
         else:
             return -1
@@ -43,16 +43,24 @@ class LRU:
 if __name__ == '__main__':
     lru = LRU(4)
 
-    numbers = [i for i in range(50)]
+    # numbers = [i for i in range(50)]
+    #
+    # for i in range(8):
+    #     num = random.choice(numbers)
+    #     print('put:', num%10, num)
+    #     lru.put(num%10, num)
+    #     print(lru.s(), lru.dl_list.s(), lru.length)
+    #
+    # for i in range(5):
+    #     print('get:', i, lru.get(i))
+    #     print(lru.s(), lru.dl_list.s(), lru.length)
 
-    for i in range(8):
-        num = random.choice(numbers)
-        print('put:', num%10, num)
-        lru.put(num%10, num)
-        print(lru.s(), lru.dl_list.s(), lru.length)
+    lru.put(2, 22)
+    lru.put(3, 33)
+    print(lru.s(), lru.dl_list.s(), lru.length)
 
-    for i in range(5):
-        print('get:', i, lru.get(i))
-        print(lru.s(), lru.dl_list.s(), lru.length)
+    lru.get(2)
+    print(lru.s(), lru.dl_list.s(), lru.length)
 
-
+    lru.put(2, 52)
+    print(lru.s(), lru.dl_list.s(), lru.length)
